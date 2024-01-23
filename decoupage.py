@@ -1,81 +1,72 @@
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-import PyPDF2
 import pdfplumber
-import spacy
-# Input data files are available in the read-only "../input/" directory
-# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
-
+import re
 import os
-for dirname, _, filenames in os.walk('/home/swaggeur/CTP/input/pdfs-input'):
-    for filename in filenames:
-        print(os.path.join(dirname, filename))
 
-# Charger le modèle de langue français
-nlp = spacy.load("fr_core_news_sm")
+def clean_spaces(text):
+    # Nettoyer les espaces en trop
+    cleaned_text = re.sub('\s+', ' ', text)
+    return cleaned_text
 
-# Fonction pour extraire le texte d'un fichier pdf
-def extract_text_from_pdf(file_path):
-    text = ""
-    with open(file_path, 'rb') as file:
-        pdf_reader = PyPDF2.PdfReader(file)
-        for page_num in range(len(pdf_reader.pages)):
-            page = pdf_reader.pages[page_num]
-            text += page.extract_text()
-    return text
+def split_into_paragraphs(text, paragraph_length=300):
+    # Diviser le texte en paragraphes d'environ 300 mots
+    words = text.split()
+    paragraphs = []
+    current_paragraph = words[0]
 
-# Fonction pour extraire des informations détaillées d'un fichier PDF
-def extract_info_from_pdf(file_path):
+    for word in words[1:]:
+        if len(current_paragraph) + len(word) + 1 <= paragraph_length:
+            current_paragraph += ' ' + word
+        else:
+            paragraphs.append(current_paragraph)
+            current_paragraph = word
+
+    paragraphs.append(current_paragraph)
+    return paragraphs
+
+def process_pdf(file_path):
+    # Lire le contenu du PDF
     with pdfplumber.open(file_path) as pdf:
-        text = ""
+        text = ''
         for page_num in range(len(pdf.pages)):
             page = pdf.pages[page_num]
             text += page.extract_text()
-            # Vous pouvez également extraire d'autres informations telles que les images, les coordonnées du texte, etc.
-    return text
+    # Nettoyer les espaces
+    cleaned_text = clean_spaces(text)
 
-def tokenize_text(text):
-    doc = nlp(text)
-    paragraphs = []
-    current_paragraph = []
-    current_token_count = 0
-    
-    for token in doc:
-        # Ignorer les espaces et les retours à la ligne
-        if not token.is_space and not token.text.isspace():
-            if current_token_count + len(token) <= 512:
-                current_paragraph.append(token.text)
-                current_token_count += len(token)
-            else:
-                paragraphs.append(' '.join(current_paragraph))
-                current_paragraph = [token.text]
-                current_token_count = len(token)
-    
-    paragraphs.append(' '.join(current_paragraph))
+    # Diviser en paragraphes
+    paragraphs = split_into_paragraphs(cleaned_text)
+
     return paragraphs
 
+def process_multiple_pdfs(folder_path):
+    # Obtenir la liste des fichiers PDF dans le dossier
+    pdf_files = [f for f in os.listdir(folder_path) if f.endswith('.pdf')]
 
-def main():
-    # Spécifiez le chemin vers le dataset
-    dataset_path = "/home/swaggeur/CTP/input/pdfs-input"
-
-    # Liste des fichiers dans le dataset
-    files = os.listdir(dataset_path)
-
-    # Liste pour stocker les paragraphes de tous les fichiers
+    # Tableau pour stocker tous les paragraphes 
     all_paragraphs = []
 
-    # Parcourir tous les fichiers du dataset et appliquer les fonctions d'extraction
-    for file_name in files:
-        file_path = os.path.join(dataset_path, file_name)
-        text_content = extract_text_from_pdf(file_path)
-        paragraphs = tokenize_text(text_content)
-        all_paragraphs.extend(paragraphs)
+    # Traiter chaque fichier PDF
+    for pdf_file in pdf_files:
+        pdf_file_path = os.path.join(folder_path, pdf_file)
+        result = process_pdf(pdf_file_path)
 
-    # Retourner la variable all_paragraphs à la fin de la fonction
+        # Ajouter les paragraphes au tableau global
+        all_paragraphs.extend(result)
+
     return all_paragraphs
+
+def main_decoupage():
+    # Exemple d'utilisation avec un dossier contenant les fichiers PDF
+    pdf_folder_path = '/home/swaggeur/CTP/input/pdfs-input'
+    return process_multiple_pdfs(pdf_folder_path)
 
 
 # Si le script est exécuté directement, appeler la fonction main()
 if __name__ == "__main__":
-    main()
+    all_paragraphs = main_decoupage()
+
+    # Maintenant, vous pouvez utiliser la variable all_paragraphs comme vous le souhaitez
+    print("Nombre total de paragraphes :", len(all_paragraphs))
+
+    for i, paragraph in enumerate(all_paragraphs[:10]):
+        print(f"Paragraphe {i+1} :\n{paragraph}\n")

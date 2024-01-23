@@ -3,3 +3,4 @@ pandas
 PyPDF2
 pdfplumber
 spacy
+sentence_transformers
