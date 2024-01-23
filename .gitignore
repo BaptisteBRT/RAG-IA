@@ -1,2 +1,5 @@
 # Pas de push du venv
 /venv
+
+# Pas de pycache
+/__pycache__
