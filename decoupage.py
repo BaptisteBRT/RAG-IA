@@ -11,14 +11,8 @@ for dirname, _, filenames in os.walk('/home/swaggeur/CTP/input/pdfs-input'):
     for filename in filenames:
         print(os.path.join(dirname, filename))
 
-# You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save & Run All" 
-# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session
-
-# Spécifiez le chemin vers le dataset
-dataset_path = "/home/swaggeur/CTP/input/pdfs-input"
-
-# Liste des fichiers dans le dataset
-files = os.listdir(dataset_path)
+# Charger le modèle de langue français
+nlp = spacy.load("fr_core_news_sm")
 
 # Fonction pour extraire le texte d'un fichier pdf
 def extract_text_from_pdf(file_path):
@@ -61,23 +55,27 @@ def tokenize_text(text):
     return paragraphs
 
 
-# Liste pour stocker les paragraphes de tous les fichiers
-# Charger le modèle de langue français
-nlp = spacy.load("fr_core_news_sm")
-all_paragraphs = []
+def main():
+    # Spécifiez le chemin vers le dataset
+    dataset_path = "/home/swaggeur/CTP/input/pdfs-input"
 
-# Parcourir tous les fichiers du dataset et appliquer les fonctions d'extraction
-for file_name in files:
-    file_path = os.path.join(dataset_path, file_name)
-    text_content = extract_text_from_pdf(file_path)
-    # Faites quelque chose avec le texte extrait, par exemple, le sauvegarder dans un autre format ou effectuer une analyse supplémentaire
-    # print(f"Contenu extrait du fichier {file_name} :\n{text_content[:300]}...\n")
-    
-    paragraphs = tokenize_text(text_content)
-    
-    # Ajouter les paragraphes à la liste globale
-    all_paragraphs.extend(paragraphs)
+    # Liste des fichiers dans le dataset
+    files = os.listdir(dataset_path)
 
-# Afficher les premiers paragraphes (vous pouvez ajuster selon vos besoins)
-for i, paragraph in enumerate(all_paragraphs[:5]):
-    print(f"Paragraphe {i+1} :\n{paragraph}\n")
+    # Liste pour stocker les paragraphes de tous les fichiers
+    all_paragraphs = []
+
+    # Parcourir tous les fichiers du dataset et appliquer les fonctions d'extraction
+    for file_name in files:
+        file_path = os.path.join(dataset_path, file_name)
+        text_content = extract_text_from_pdf(file_path)
+        paragraphs = tokenize_text(text_content)
+        all_paragraphs.extend(paragraphs)
+
+    # Retourner la variable all_paragraphs à la fin de la fonction
+    return all_paragraphs
+
+
+# Si le script est exécuté directement, appeler la fonction main()
+if __name__ == "__main__":
+    main()
