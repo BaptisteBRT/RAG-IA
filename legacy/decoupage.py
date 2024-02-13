@@ -7,7 +7,7 @@ import spacy
 # For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
 
 import os
-for dirname, _, filenames in os.walk('/home/swaggeur/CTP/input/pdfs-input'):
+for dirname, _, filenames in os.walk('/Users/mouadsadik/Projects/school/RAG-IA/input/pdfs-input'):
     for filename in filenames:
         print(os.path.join(dirname, filename))
 
@@ -57,7 +57,7 @@ def tokenize_text(text):
 
 def main():
     # Spécifiez le chemin vers le dataset
-    dataset_path = "/home/swaggeur/CTP/input/pdfs-input"
+    dataset_path = "/Users/mouadsadik/Projects/school/RAG-IA/input/pdfs-input"
 
     # Liste des fichiers dans le dataset
     files = os.listdir(dataset_path)

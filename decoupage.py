@@ -57,7 +57,7 @@ def process_multiple_pdfs(folder_path):
 
 def main_decoupage():
     # Exemple d'utilisation avec un dossier contenant les fichiers PDF
-    pdf_folder_path = '/home/swaggeur/CTP/input/pdfs-input'
+    pdf_folder_path = '/Users/mouadsadik/Projects/school/RAG-IA/input/pdfs-input'
     return process_multiple_pdfs(pdf_folder_path)
 
 
