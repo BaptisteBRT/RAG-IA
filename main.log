@@ -1,0 +1,111 @@
+[1707820759] Log start
+[1707820759] Cmd: /Users/mouadsadik/Projects/llama.cpp/main -m /Users/mouadsadik/Projects/llama.cpp/models/openhermes-2.5-mistral-7b.Q4_K_M.gguf -p " Je vais te donner un context à partir de mes fichier que tu vas utiliser pour construire une réponse.
+ Voici le contexte : Rentrée 2023 à l’IG2I Lundi 4 septembre Élèves de 1re année Amphi du directeur pour les parents (sur inscription fin août) 14h Accueil des élèves : remise du Welcome pack et photo de promotion 15h Cocktail de bienvenue 16h Amphi de rentrée pour les élèves de 1re année Élèves de 2e année 8h Amphi de
+rentrée le 05/02/2024
+directeur 13h30 Début des cours - pensez à consulter le planning pour connaître votre salle Apprentis de 1re année 10h Amphi de rentrée du directeur 13h30 Début des cours - pensez à consulter le planning pour connaître votre salle Apprentis de 2e année : rentrée le 13/11/2023 Élèves de 4e année :.
+ Voici ma question :À quelles heure est la rentrée pour les LE1 à l'IG2I ?
+ Réponse : " -n 1000 -e
+[1707820759] main: build = 1873 (a836c8f)
+[1707820759] main: built with Apple clang version 15.0.0 (clang-1500.1.0.2.5) for arm64-apple-darwin23.2.0
+[1707820759] main: seed  = 1707820759
+[1707820759] main: llama backend init
+[1707820759] main: load the model and apply lora adapter, if any
+[1707820759] llama_model_loader: loaded meta data with 20 key-value pairs and 291 tensors from /Users/mouadsadik/Projects/llama.cpp/models/openhermes-2.5-mistral-7b.Q4_K_M.gguf (version GGUF V3 (latest))
+[1707820759] llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+[1707820759] llama_model_loader: - kv   0:                       general.architecture str              = llama
+[1707820759] llama_model_loader: - kv   1:                               general.name str              = teknium_openhermes-2.5-mistral-7b
+[1707820759] llama_model_loader: - kv   2:                       llama.context_length u32              = 32768
+[1707820759] llama_model_loader: - kv   3:                     llama.embedding_length u32              = 4096
+[1707820759] llama_model_loader: - kv   4:                          llama.block_count u32              = 32
+[1707820759] llama_model_loader: - kv   5:                  llama.feed_forward_length u32              = 14336
+[1707820759] llama_model_loader: - kv   6:                 llama.rope.dimension_count u32              = 128
+[1707820759] llama_model_loader: - kv   7:                 llama.attention.head_count u32              = 32
+[1707820759] llama_model_loader: - kv   8:              llama.attention.head_count_kv u32              = 8
+[1707820759] llama_model_loader: - kv   9:     llama.attention.layer_norm_rms_epsilon f32              = 0,000010
+[1707820759] llama_model_loader: - kv  10:                       llama.rope.freq_base f32              = 10000,000000
+[1707820759] llama_model_loader: - kv  11:                          general.file_type u32              = 15
+[1707820759] llama_model_loader: - kv  12:                       tokenizer.ggml.model str              = llama
+[1707820759] llama_model_loader: - kv  13:                      tokenizer.ggml.tokens arr[str,32002]   = ["<unk>", "<s>", "</s>", "<0x00>", "<...
+[1707820759] llama_model_loader: - kv  14:                      tokenizer.ggml.scores arr[f32,32002]   = [0,000000, 0,000000, 0,000000, 0,0000...
+[1707820759] llama_model_loader: - kv  15:                  tokenizer.ggml.token_type arr[i32,32002]   = [2, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, ...
+[1707820759] llama_model_loader: - kv  16:                tokenizer.ggml.bos_token_id u32              = 1
+[1707820759] llama_model_loader: - kv  17:                tokenizer.ggml.eos_token_id u32              = 32000
+[1707820759] llama_model_loader: - kv  18:            tokenizer.ggml.padding_token_id u32              = 0
+[1707820759] llama_model_loader: - kv  19:               general.quantization_version u32              = 2
+[1707820759] llama_model_loader: - type  f32:   65 tensors
+[1707820759] llama_model_loader: - type q4_K:  193 tensors
+[1707820759] llama_model_loader: - type q6_K:   33 tensors
+[1707820759] llm_load_vocab: special tokens definition check successful ( 261/32002 ).
+[1707820759] llm_load_print_meta: format           = GGUF V3 (latest)
+[1707820759] llm_load_print_meta: arch             = llama
+[1707820759] llm_load_print_meta: vocab type       = SPM
+[1707820759] llm_load_print_meta: n_vocab          = 32002
+[1707820759] llm_load_print_meta: n_merges         = 0
+[1707820759] llm_load_print_meta: n_ctx_train      = 32768
+[1707820759] llm_load_print_meta: n_embd           = 4096
+[1707820759] llm_load_print_meta: n_head           = 32
+[1707820759] llm_load_print_meta: n_head_kv        = 8
+[1707820759] llm_load_print_meta: n_layer          = 32
+[1707820759] llm_load_print_meta: n_rot            = 128
+[1707820759] llm_load_print_meta: n_embd_head_k    = 128
+[1707820759] llm_load_print_meta: n_embd_head_v    = 128
+[1707820759] llm_load_print_meta: n_gqa            = 4
+[1707820759] llm_load_print_meta: n_embd_k_gqa     = 1024
+[1707820759] llm_load_print_meta: n_embd_v_gqa     = 1024
+[1707820759] llm_load_print_meta: f_norm_eps       = 0,0e+00
+[1707820759] llm_load_print_meta: f_norm_rms_eps   = 1,0e-05
+[1707820759] llm_load_print_meta: f_clamp_kqv      = 0,0e+00
+[1707820759] llm_load_print_meta: f_max_alibi_bias = 0,0e+00
+[1707820759] llm_load_print_meta: n_ff             = 14336
+[1707820759] llm_load_print_meta: n_expert         = 0
+[1707820759] llm_load_print_meta: n_expert_used    = 0
+[1707820759] llm_load_print_meta: rope scaling     = linear
+[1707820759] llm_load_print_meta: freq_base_train  = 10000,0
+[1707820759] llm_load_print_meta: freq_scale_train = 1
+[1707820759] llm_load_print_meta: n_yarn_orig_ctx  = 32768
+[1707820759] llm_load_print_meta: rope_finetuned   = unknown
+[1707820759] llm_load_print_meta: model type       = 7B
+[1707820759] llm_load_print_meta: model ftype      = Q4_K - Medium
+[1707820759] llm_load_print_meta: model params     = 7,24 B
+[1707820759] llm_load_print_meta: model size       = 4,07 GiB (4,83 BPW) 
+[1707820759] llm_load_print_meta: general.name     = teknium_openhermes-2.5-mistral-7b
+[1707820759] llm_load_print_meta: BOS token        = 1 '<s>'
+[1707820759] llm_load_print_meta: EOS token        = 32000 '<|im_end|>'
+[1707820759] llm_load_print_meta: UNK token        = 0 '<unk>'
+[1707820759] llm_load_print_meta: PAD token        = 0 '<unk>'
+[1707820759] llm_load_print_meta: LF token         = 13 '<0x0A>'
+[1707820759] llm_load_tensors: ggml ctx size =    0,22 MiB
+[1707820759] ggml_backend_metal_buffer_from_ptr: allocated buffer, size =  4095,08 MiB[1707820759] , ( 4095,14 / 10922,67)[1707820759] 
+[1707820759] llm_load_tensors: offloading 32 repeating layers to GPU
+[1707820759] llm_load_tensors: offloading non-repeating layers to GPU
+[1707820759] llm_load_tensors: offloaded 33/33 layers to GPU
+[1707820759] llm_load_tensors:      Metal buffer size =  4095,06 MiB
+[1707820759] llm_load_tensors:        CPU buffer size =    70,32 MiB
+[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] .[1707820759] 
+[1707820759] llama_new_context_with_model: n_ctx      = 512
+[1707820759] llama_new_context_with_model: freq_base  = 10000,0
+[1707820759] llama_new_context_with_model: freq_scale = 1
+[1707820759] ggml_metal_init: allocating
+[1707820759] ggml_metal_init: found device: Apple M2
+[1707820759] ggml_metal_init: picking default device: Apple M2
+[1707820759] ggml_metal_init: default.metallib not found, loading from source
+[1707820759] ggml_metal_init: GGML_METAL_PATH_RESOURCES = nil
+[1707820759] ggml_metal_init: loading '/Users/mouadsadik/Projects/llama.cpp/ggml-metal.metal'
+[1707820759] ggml_metal_init: GPU name:   Apple M2
+[1707820759] ggml_metal_init: GPU family: MTLGPUFamilyApple8  (1008)
+[1707820759] ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+[1707820759] ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+[1707820759] ggml_metal_init: simdgroup reduction support   = true
+[1707820759] ggml_metal_init: simdgroup matrix mul. support = true
+[1707820759] ggml_metal_init: hasUnifiedMemory              = true
+[1707820759] ggml_metal_init: recommendedMaxWorkingSetSize  = 11453,25 MB
+[1707820759] ggml_metal_init: maxTransferRate               = built-in GPU
+[1707820759] ggml_backend_metal_buffer_type_alloc_buffer: allocated buffer, size =    64,00 MiB[1707820759] , ( 4160,70 / 10922,67)[1707820759] 
+[1707820759] llama_kv_cache_init:      Metal KV buffer size =    64,00 MiB
+[1707820759] llama_new_context_with_model: KV self size  =   64,00 MiB, K (f16):   32,00 MiB, V (f16):   32,00 MiB
+[1707820759] ggml_backend_metal_buffer_type_alloc_buffer: allocated buffer, size =     0,02 MiB[1707820759] , ( 4160,72 / 10922,67)[1707820759] 
+[1707820759] ggml_backend_metal_buffer_type_alloc_buffer: allocated buffer, size =    73,02 MiB[1707820759] , ( 4233,72 / 10922,67)[1707820759] 
+[1707820759] llama_new_context_with_model: graph splits (measure): 3
+[1707820759] llama_new_context_with_model:      Metal compute buffer size =    73,00 MiB
+[1707820759] llama_new_context_with_model:        CPU compute buffer size =     9,00 MiB
+[1707820759] warming up the model with an empty run
